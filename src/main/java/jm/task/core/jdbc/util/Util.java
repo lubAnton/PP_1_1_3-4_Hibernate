@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 public class Util {
-    private static final String URL = "jdbc:mysql://localhost:3306/ppdb";
+    private static final String URL = "jdbc:mysql://localhost:3306/ppdb1";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "luboshA1984!";
 
@@ -17,13 +17,14 @@ public class Util {
     }
 
     public static Connection getConnections () {
-        Connection connection = null;
+        Connection connection;
         try {
             DriverManager.registerDriver(new Driver());
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);// реализуйте настройку соеденения с БД
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            return connection;// реализуйте настройку соеденения с БД
         } catch (SQLException e) {
             System.out.println("Не удалось подключиться к БД");
+            throw new RuntimeException(e);
         }
-        return connection;
     }
 }
